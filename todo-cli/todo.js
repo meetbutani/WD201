@@ -1,5 +1,3 @@
-// const { all } = require("async");
-
 const todoList = () => {
     let today = new Date().toISOString().split("T")[0];
     let all = []
