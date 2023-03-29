@@ -17,9 +17,16 @@ app.get("/", (request, response) => {
   response.send("Hello World");
 });
 
-app.get("/todos", (request, response) => {
+app.get("/todos", async (request, response) => {
   // res.send("Hello World");
   console.log("Todo List");
+  try {
+    const todos = await Todo.getAllTodos();
+    return response.json(todos);
+  } catch (err) {
+    console.error(err);
+    return response.status(422).json(err);
+  }
 });
 
 app.post("/todos", async (request, response) => {
