@@ -50,23 +50,24 @@ describe("Todo test Suit", () => {
     expect(parsedUpdateResponse.completed).toBe(true);
   });
 
-  // test("Tests for DELETE /todos/:id endpoint using Jest", async () => {
-  //   const response = await agent.post("/todos").send({
-  //     title: "Buy milk",
-  //     dueDate: new Date().toISOString().split("T")[0],
-  //     completed: false,
-  //   });
-  //   const parsedResponse = JSON.parse(response.text);
-  //   const todoID = parsedResponse.id;
+  test("Tests for DELETE /todos/:id endpoint using Jest", async () => {
+    const response = await agent.post("/todos").send({
+      title: "Buy milk",
+      dueDate: new Date().toISOString().split("T")[0],
+      completed: false,
+    });
+    const parsedResponse = JSON.parse(response.text);
+    const todoID = parsedResponse.id;
 
-  //   const deleteResponse = await agent.delete(`/todos/${todoID}`).send();
-  //   const parsedDeleteResponse = JSON.parse(deleteResponse.text);
-  //   expect(parsedDeleteResponse).toBe(true);
+    const deleteResponse = await agent.delete(`/todos/${todoID}`).send();
+    const parsedDeleteResponse = JSON.parse(deleteResponse.text);
+    console.log(parsedDeleteResponse);
+    expect(parsedDeleteResponse.length).toEqual(0);
 
-  //   const verifyDeletionResponse = await agent.get("/todos").send();
-  //   const parsedVerifyDeletionResponse = JSON.parse(
-  //     verifyDeletionResponse.text
-  //   );
-  //   expect(parsedVerifyDeletionResponse).toEqual([]);
-  // });
+    const verifyDeletionResponse = await agent.get("/todos").send();
+    const parsedVerifyDeletionResponse = JSON.parse(
+      verifyDeletionResponse.text
+    );
+    expect(parsedVerifyDeletionResponse.length).toEqual(2);
+  });
 });
