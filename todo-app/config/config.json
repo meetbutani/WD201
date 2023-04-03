@@ -16,10 +16,7 @@
     "logging": false
   },
   "production": {
-    "username": "postgres",
-    "password": "123456",
-    "database": "wd-todo-prod",
-    "host": "localhost",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
     "logging": false
   }
