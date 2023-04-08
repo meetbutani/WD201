@@ -2,22 +2,36 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos Home</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link rel="stylesheet" href="./css/styles.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <%- include("header.ejs") %>
 
-        <table>
-            <%- include("todos.ejs") %>
-        </table>
+  <div class="grid grid-cols-6">
+    <div class="col-start-3 col-span-2 pt-5">
+      <%- include("header.ejs") %>
+      <form action="">
+        <div class="flex gap-2 pt-4 pb-2">
+          <div class="flex-auto">
+            <input class="border rounded border-gray-300 text-gray-900 w-full p-2 text-sm leading-relaxed" type="text" placeholder="What's next?" required />
+          </div>
+          <div class="flex-auto">
+            <input class="border rounded border-gray-300 text-gray-900 w-full p-2 text-sm leading-normal" type="date" />
+          </div>
+          <div class="flex-none">
+            <button class="bg-green-600 text-white px-5 py-2 rounded leading-normal font-medium mr-2 mb-2 py-1.5" type="submit">Add</button>
+          </div>
+        </div>
+      </form>
 
-        <%- include("footer.ejs") %>
+      <%- include("todos.ejs") %>
+    </div>
+  </div>
 </body>
 
 </html>
