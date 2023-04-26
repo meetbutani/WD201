@@ -23,7 +23,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(flash());
 
 const bcrypt = require("bcrypt");
-const saltRounds = 1;
+const saltRounds = 10;
 
 app.use(
   session({
@@ -148,34 +148,17 @@ app.get("/signin", async (request, response) => {
 });
 
 app.post("/users", async (request, response) => {
-  if (request.body.firstname == "") {
-    request.flash("error", "First Name can't be Empty");
-    return response.redirect("/signup");
-  }
-
-  if (request.body.email == "") {
-    request.flash("error", "Email Name can't be Empty");
-    return response.redirect("/signup");
-  }
-
-  if (request.body.password == "") {
-    request.flash("error", "Password can't be Empty");
-    return response.redirect("/signup");
-  }
-
   // hash password using bcrypt
   const hashedPwd = await bcrypt.hash(request.body.password, saltRounds);
 
   // Have to create user here
   try {
-    console.log(request.body);
     const user = await User.create({
-      firstName: request.body.firstname,
-      lastName: request.body.lastname,
+      firstname: request.body.firstname,
+      lastname: request.body.lastname,
       email: request.body.email,
       password: hashedPwd,
     });
-    console.log(user);
     request.login(user, (err) => {
       if (err) {
         console.log(err);
@@ -183,9 +166,7 @@ app.post("/users", async (request, response) => {
       response.redirect("/todos");
     });
   } catch (error) {
-    request.flash("error", "Email Already Exists");
     console.log(error);
-    return response.redirect("/signup");
   }
 });
 
@@ -231,18 +212,7 @@ app.post(
   "/todos",
   connectEnsureLogin.ensureLoggedIn(),
   async (request, response) => {
-    // console.log("Creating a Todo", request.body);
-
-    if (request.body.title == "") {
-      request.flash("error", "Title can't be Empty");
-      return response.redirect("/todos");
-    }
-
-    if (request.body.dueDate == "") {
-      request.flash("error", "Due Date can't be empty");
-      return response.redirect("/todos");
-    }
-
+    console.log("Creating a Todo", request.body);
     // Todo
     try {
       await Todo.addTodo({
@@ -272,7 +242,6 @@ app.put(
       return response.json(updatedTodo);
     } catch (error) {
       console.log(error);
-      return response.status(422).json(error);
     }
   }
 );

@@ -1,0 +1,44 @@
+### Second request using a variable 
+# @title = Have to go to market
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "Submit assignment", "dueDate": "2023-04-07" }
+
+###
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "Submit assignment 2", "dueDate": "2023-04-07" }
+
+###
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "Pay rent", "dueDate": "2023-04-08" }
+
+###
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "Service Vehicle", "dueDate": "2023-04-08" }
+
+###
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "File taxes", "dueDate": "2023-04-09" }
+
+###
+POST https://meet-butani-wd201.onrender.com/todos/ HTTP/1.1
+content-type: application/json
+
+{ "title": "Pay electric bill", "dueDate": "2023-04-09" }
+
+###
+GET https://meet-butani-wd201.onrender.com/todos HTTP/1.1
+
+# sudo service postgresql start
+# node index.js
+# netstat -ano | findstr :<PORT>
+# taskkill /PID <PID> /F

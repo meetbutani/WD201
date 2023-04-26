@@ -69,21 +69,13 @@
                                 class="border rounded border-gray-300 text-gray-900 w-full p-2 text-sm leading-normal"
                                 type="date" name="dueDate" required />
                         </div>
-                        <div class="flex-none">
+                        <div class="fle x-none">
                             <button
                                 class="bg-green-600 text-white px-5 py-2 rounded leading-normal font-medium mr-2 mb-2 py-1.5"
                                 type="submit">Add</button>
                         </div>
                     </div>
                 </form>
-
-                <% if(messages && messages.error && messages.error.length> 0) { %>
-                    <% for(var i=0; i<messages.error.length; i++) { %>
-                        <li class="text-red-500 p-1">
-                            <%= messages.error[i] %>
-                        </li>
-                        <% } %>
-                            <% } %>
 
                 <div>
                     <%- // include("todo.ejs") %>
@@ -94,14 +86,6 @@
                 </div>
         </div>
     </div>
-    <%-include('footer.ejs') %>
-
-    <script>
-        // changing the autofocus from title input so that so that customvalidaity not shows always
-        window.addEventListener("load", function () {
-            document.activeElement.blur();
-        });
-    </script>
 </body>
 
 </html>
